@@ -1,18 +1,17 @@
 import scrapy
 
 
-class WhiskeySpider(scrapy.Spider):
-    name = 'whiskey'
-    start_urls = ['https://quotes.toscrape.com/']
+class RedditSpider(scrapy.Spider):
+    name = 'reddit'
+    start_urls = ['https://www.reddit.com/r/SingaporeRaw/']
 
     def parse(self, response):
-        title = response.css('title::text')[0].extract()
-        quotes = response.css('span.text::text').extract()
-        author = response.css('.author::text').extract()
-        tags = response.css('.tag::text').extract()
+        #divInfo = response.css('.nU4Je7n-eSXStTBAPMYt8::text')[0:5].extract()
+        timeAgo = response.css('._2VF2J19pUIMSLJFky-7PEI::text')[0:5].extract()
+        postTitle = response.css('._eYtD2XCVieq6emjKBH3m::text')[0:5].extract()
+        username = response.css('.oQctV4n0yUb0uiHDdGnmE::text()[1]').extract()
         yield {
-            'titletext' : title,
-            'quotes' : quotes,
-            'author' : author,
-            'tags' : tags
+            'username': username,
+            'timeAgo': timeAgo,
+            'postTitle': postTitle,
         }
