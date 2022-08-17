@@ -1,5 +1,6 @@
 import scrapy
 
+
 class WhiskeySpider(scrapy.Spider):
     name = 'whiskey'
     start_urls = ['https://quotes.toscrape.com/']
